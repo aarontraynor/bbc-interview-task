@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Object to represent the details of a valid response from a URL.
@@ -9,7 +9,7 @@ import java.util.Date;
 public class ValidResponse extends ResponseDetails {
     private int statusCode;
     private int contentLength;
-    private Date dateOfRequest;
+    private Calendar dateOfRequest;
 
     /**
      * ValidResponse Constructor
@@ -19,7 +19,7 @@ public class ValidResponse extends ResponseDetails {
      * @param contentLength the number of lines in the response received
      * @param dateOfRequest the date and time at which the request was made
      */
-    public ValidResponse(String url, int statusCode, int contentLength, Date dateOfRequest) {
+    public ValidResponse(String url, int statusCode, int contentLength, Calendar dateOfRequest) {
         super(url);
         this.statusCode = statusCode;
         this.contentLength = contentLength;
@@ -67,7 +67,7 @@ public class ValidResponse extends ResponseDetails {
      *
      * @return the date and time at which the response was sent
      */
-    public Date getDateOfRequest() {
+    public Calendar getDateOfRequest() {
         return dateOfRequest;
     }
 
@@ -76,7 +76,7 @@ public class ValidResponse extends ResponseDetails {
      *
      * @param dateOfRequest the date and time at which the response was sent
      */
-    public void setDateOfRequest(Date dateOfRequest) {
+    public void setDateOfRequest(Calendar dateOfRequest) {
         this.dateOfRequest = dateOfRequest;
     }
 

@@ -25,7 +25,7 @@ public abstract class ResponseDetails {
      *
      * @return the URL used to obtain the response
      */
-    protected String getUrl() {
+    public String getUrl() {
         return this.url;
     }
 

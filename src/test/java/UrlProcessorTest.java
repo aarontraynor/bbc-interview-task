@@ -53,5 +53,4 @@ public class UrlProcessorTest {
 
         assertEquals(urls, urlsFromFile);
     }
-
 }

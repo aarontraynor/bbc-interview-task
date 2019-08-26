@@ -1,3 +1,29 @@
+# URL Response Processor
+This program is written in Java using Gradle to manage the build process and JUnit to implement unit tests of the
+software.
+
+## Setting up
+
+#### Dependencies
+Running this software requires Java to be installed on your machine.
+
+> [Download Java Here](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+This program has been tested using Java SE 18.9 (build 11.0.1), but should also be compatible with later versions.
+
+#### Running the Program
+
+To run the program on a *NIX-based operating system (including MacOS), follow these steps:
+1. Save the tgz file to a location that you can find later (e.g. in your home directory).
+2. Open a terminal window and navigate to this location.
+3. Type `tar -xvzf bbc-interview-task_ATraynor.tgz` to extract the archive file.
+4. Type `cd bbc-interview-task/build/distributions/bbc-interview-task-1.0/bin` to navigate to the location of the
+compiled executable.
+5. Type `./bbc-interview-task` to run the program.
+
+Upon executing the program, you will be prompted to enter a file path. This can be an absolute path or a relative one,
+but must include the full file name, including its extension.
+
 # Programming Exercise
 
 The task is to write a program that makes http (and https) requests to specified URLs and to report on certain

@@ -1,6 +1,5 @@
 package model;
 
-import javax.xml.ws.Response;
 import java.util.Date;
 
 /**
@@ -37,4 +36,6 @@ public abstract class ResponseDetails {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public abstract String toJsonString();
 }

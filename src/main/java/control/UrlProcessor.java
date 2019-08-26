@@ -74,21 +74,7 @@ public class UrlProcessor {
         // Set request type to GET request
         con.setRequestMethod("GET");
 
-        // Get status code of response
-        status = con.getResponseCode();
-
-        // Read content of response
-        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        content = new ArrayList<>();
-
-        while((line = br.readLine()) != null) {
-            content.add(line);
-        }
-
-        // Read date of response
-        date = con.getDate();
-
         // Return response details as a ValidResponse object
-        return new ValidResponse(urlStr, status, content.size(), date);
+        return new ValidResponse(urlStr, con.getResponseCode(), con.getContentLength(), con.getDate());
     }
 }

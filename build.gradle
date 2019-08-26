@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'uk.aarontraynor.java'
@@ -15,3 +16,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile 'org.mockito:mockito-core:2.7.22'
 }
+
+mainClassName = 'view.HTTPGetRequestDetails'

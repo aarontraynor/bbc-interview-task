@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * Parent object to represent the details of a response from a URL.
- *
+ * <p>
  * Its sub-types are ValidResponse or InvalidResponse
  */
 public abstract class ResponseDetails {

@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 /**
  * Object to represent the details of a valid response from a URL.
- *
  */
 public class ValidResponse extends ResponseDetails {
     private int statusCode;
@@ -16,8 +15,8 @@ public class ValidResponse extends ResponseDetails {
     /**
      * ValidResponse Constructor
      *
-     * @param url the URL to which the request was made
-     * @param statusCode the status code returned by the URL
+     * @param url           the URL to which the request was made
+     * @param statusCode    the status code returned by the URL
      * @param contentLength the number of lines in the response received
      * @param dateOfRequest the date and time at which the request was made
      */
@@ -100,7 +99,7 @@ public class ValidResponse extends ResponseDetails {
      */
     public String toJsonString() {
 
-        return  "{\n"
+        return "{\n"
                 + "\t\"Url\": \"" + super.getUrl() + "\",\n"
                 + "\t\"Status_code\": " + this.statusCode + ",\n"
                 + "\t\"Content_length\": " + this.contentLength + ",\n"

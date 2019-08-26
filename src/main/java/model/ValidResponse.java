@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Calendar;
 public class ValidResponse extends ResponseDetails {
     private int statusCode;
     private int contentLength;
-    private Calendar dateOfRequest;
+    private long dateOfRequest;
 
     /**
      * ValidResponse Constructor
@@ -19,7 +21,7 @@ public class ValidResponse extends ResponseDetails {
      * @param contentLength the number of lines in the response received
      * @param dateOfRequest the date and time at which the request was made
      */
-    public ValidResponse(String url, int statusCode, int contentLength, Calendar dateOfRequest) {
+    public ValidResponse(String url, int statusCode, int contentLength, long dateOfRequest) {
         super(url);
         this.statusCode = statusCode;
         this.contentLength = contentLength;
@@ -65,10 +67,21 @@ public class ValidResponse extends ResponseDetails {
     /**
      * Accessor method for the dateOfRequest state
      *
-     * @return the date and time at which the response was sent
+     * @return the date and time in milliseconds from Epoch at which the response was sent
      */
-    public Calendar getDateOfRequest() {
+    public long getDateOfRequest() {
         return dateOfRequest;
+    }
+
+    /**
+     * Accessor method for the dateOfRequest state in a human-readable format
+     *
+     * @return the date and time in a human-readable format at which the response was sent
+     */
+    public String getDateOfRequestAsString() {
+        SimpleDateFormat df = new SimpleDateFormat("EEE, DD MMM yyyy HH:mm:ss z");
+
+        return df.format(dateOfRequest);
     }
 
     /**
@@ -76,7 +89,7 @@ public class ValidResponse extends ResponseDetails {
      *
      * @param dateOfRequest the date and time at which the response was sent
      */
-    public void setDateOfRequest(Calendar dateOfRequest) {
+    public void setDateOfRequest(long dateOfRequest) {
         this.dateOfRequest = dateOfRequest;
     }
 
@@ -86,11 +99,12 @@ public class ValidResponse extends ResponseDetails {
      * @return the object as JSON
      */
     public String toJsonString() {
+
         return  "{\n"
                 + "\t\"Url\": \"" + super.getUrl() + "\",\n"
                 + "\t\"Status_code\": " + this.statusCode + ",\n"
                 + "\t\"Content_length\": " + this.contentLength + ",\n"
-                + "\t\"Date\": " + "\"" + this.dateOfRequest.toString() + "\""
+                + "\t\"Date\": " + "\"" + getDateOfRequestAsString() + "\""
                 + "}";
     }
 }

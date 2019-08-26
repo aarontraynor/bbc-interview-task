@@ -10,13 +10,13 @@ import static org.junit.Assert.assertEquals;
 
 public class ResponseDetailsTest {
 
-    Calendar date;
+    Long date;
     ValidResponse valid;
     InvalidResponse invalid;
 
     @Before
     public void setup() {
-        date = Calendar.getInstance();
+        date = System.currentTimeMillis();
         valid = new ValidResponse("https://www.bbc.co.uk/", 200, 100, date);
         invalid = new InvalidResponse("invalid://url", "Invalid URL");
     }
@@ -26,7 +26,7 @@ public class ResponseDetailsTest {
         assertEquals("https://www.bbc.co.uk/", valid.getUrl());
         assertEquals(200, valid.getStatusCode());
         assertEquals(100, valid.getContentLength());
-        assertEquals(date, valid.getDateOfRequest());
+        assertEquals((long) date, valid.getDateOfRequest());
     }
 
     @Test
@@ -41,9 +41,8 @@ public class ResponseDetailsTest {
         assertEquals(1000, valid.getContentLength());
 
         Calendar newDate = Calendar.getInstance();
-        newDate.set(1990, 01, 01, 10, 10, 0);
-        valid.setDateOfRequest(newDate);
-        assertEquals(newDate, valid.getDateOfRequest());
+        valid.setDateOfRequest(10000);
+        assertEquals(10000, valid.getDateOfRequest());
     }
 
     @Test
@@ -52,7 +51,7 @@ public class ResponseDetailsTest {
                 + "\t\"Url\": \"" + "https://www.bbc.co.uk/" + "\",\n"
                 + "\t\"Status_code\": " + 200 + ",\n"
                 + "\t\"Content_length\": " + 100 + ",\n"
-                + "\t\"Date\": " + "\"" + valid.getDateOfRequest().toString() + "\""
+                + "\t\"Date\": " + "\"" + valid.getDateOfRequestAsString() + "\""
                 + "}", valid.toJsonString());
     }
 

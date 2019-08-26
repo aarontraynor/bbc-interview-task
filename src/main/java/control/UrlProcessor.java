@@ -8,6 +8,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -73,8 +74,14 @@ public class UrlProcessor {
 
         // Set request type to GET request
         con.setRequestMethod("GET");
+        con.setReadTimeout(10000);
+        con.setConnectTimeout(10000);
 
-        // Return response details as a ValidResponse object
-        return new ValidResponse(urlStr, con.getResponseCode(), con.getContentLength(), con.getDate());
+        // Return response details as a ValidResponse object or return InvalidResponse if connection times out.
+        try {
+            return new ValidResponse(urlStr, con.getResponseCode(), con.getContentLength(), con.getDate());
+        } catch (SocketTimeoutException e) {
+            return new InvalidResponse(urlStr, "Connection timed out");
+        }
     }
 }

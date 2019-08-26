@@ -1,4 +1,6 @@
 import control.UrlProcessor;
+import model.ResponseDetails;
+import model.ValidResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class UrlProcessorTest {
     String pathname;

@@ -2,6 +2,7 @@ package control;
 
 import model.InvalidResponse;
 import model.ResponseDetails;
+import model.ValidResponse;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -44,26 +45,39 @@ public class UrlProcessor {
         return urls;
     }
 
+    /**
+     * Make a get request to a given URL and return the details of the response
+     *
+     * @param urlStr the URL to which the request should be made
+     * @return the response details from the URL request
+     * @throws IOException
+     */
     public static ResponseDetails makeGetRequest(String urlStr) throws IOException {
         URL url;
         HttpURLConnection con;
         List<String> content;
         BufferedReader br;
-        Calendar date;
+        Long date;
         String line;
         int status;
 
+        // Make initial request or return error if URL is invalid
         try {
             url = new URL(urlStr);
         } catch (MalformedURLException e) {
             return new InvalidResponse(urlStr, "Invalid URL");
         }
 
+        // Initialise connection
         con = (HttpURLConnection) url.openConnection();
+
+        // Set request type to GET request
         con.setRequestMethod("GET");
 
+        // Get status code of response
         status = con.getResponseCode();
 
+        // Read content of response
         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
         content = new ArrayList<>();
 
@@ -71,6 +85,10 @@ public class UrlProcessor {
             content.add(line);
         }
 
-        return null;
+        // Read date of response
+        date = con.getDate();
+
+        // Return response details as a ValidResponse object
+        return new ValidResponse(urlStr, status, content.size(), date);
     }
 }

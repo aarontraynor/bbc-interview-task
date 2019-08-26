@@ -104,7 +104,7 @@ public class ValidResponse extends ResponseDetails {
                 + "\t\"Url\": \"" + super.getUrl() + "\",\n"
                 + "\t\"Status_code\": " + this.statusCode + ",\n"
                 + "\t\"Content_length\": " + this.contentLength + ",\n"
-                + "\t\"Date\": " + "\"" + getDateOfRequestAsString() + "\""
+                + "\t\"Date\": " + "\"" + getDateOfRequestAsString() + "\"\n"
                 + "}";
     }
 }

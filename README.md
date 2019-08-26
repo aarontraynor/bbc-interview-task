@@ -2,6 +2,8 @@
 This program is written in Java using Gradle to manage the build process and JUnit to implement unit tests of the
 software.
 
+A copy of this repository is available at https://github.com/aarontraynor/bbc-interview-task
+
 ## Setting up
 
 #### Dependencies

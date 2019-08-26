@@ -42,6 +42,9 @@ public class InvalidResponse extends ResponseDetails {
      * @return the object as JSON
      */
     public String toJsonString() {
-        return "";
+        return "{\n"
+                + "\t\"Url\": \"" + super.getUrl() + "\",\n"
+                + "\t\"Error\": " + "\"" + this.getError() + "\""
+                + "}";
     }
 }

@@ -19,7 +19,6 @@ public class HTTPGetRequestDetails {
     public static void main(String[] args) {
         // Declare variables
         List<String> urls;
-        List<ResponseDetails> responses;
         Map<Integer, List<ValidResponse>> responsesByStatus;
         Scanner kb;
         String input;
@@ -33,7 +32,6 @@ public class HTTPGetRequestDetails {
 
         // Initialise arrays
         urls = new ArrayList<>();
-        responses = new ArrayList<>();
         responsesByStatus = new HashMap<>();
 
         System.out.println("\n\n*** RESPONSES ***\n");
@@ -49,30 +47,29 @@ public class HTTPGetRequestDetails {
         // Make GET requests for URLs and log responses. Exit with error if an exception is thrown.
         for (String url : urls) {
             try {
-                responses.add(UrlProcessor.makeGetRequest(url));
+                // Get response from url
+                ResponseDetails response = UrlProcessor.makeGetRequest(url);
+
+                // Print response details
+                System.out.println(response.toJsonString());
+
+                // Add to summary map if a ValidResponse was received
+                if(response instanceof ValidResponse) {
+                    // Get status code
+                    int statusCode = ((ValidResponse) response).getStatusCode();
+
+                    // Initialise new array in the map for statusCode if it doesn't already exist
+                    if(!responsesByStatus.containsKey(statusCode)) {
+                        responsesByStatus.put(statusCode, new ArrayList<>());
+                    }
+
+                    // Add the response to the array mapped to the statusCode
+                    responsesByStatus.get(statusCode).add((ValidResponse) response);
+                }
+
             } catch (IOException e) {
                 System.err.println("An unexpected error has occurred with the URL " + url + "\n" + e.toString());
                 System.exit(3);
-            }
-        }
-
-        // Print the response details of each URL and map to relevant status code if it is a valid response
-        for (ResponseDetails r : responses) {
-            // Print to console
-            System.out.println(r.toJsonString());
-
-            // Add to map
-            if(r instanceof ValidResponse) {
-                // Get status code
-                int statusCode = ((ValidResponse) r).getStatusCode();
-
-                // Initialise new array in the map for statusCode if it doesn't already exist
-                if(!responsesByStatus.containsKey(statusCode)) {
-                    responsesByStatus.put(statusCode, new ArrayList<>());
-                }
-
-                // Add the response to the array mapped to the statusCode
-                responsesByStatus.get(statusCode).add((ValidResponse) r);
             }
         }
 

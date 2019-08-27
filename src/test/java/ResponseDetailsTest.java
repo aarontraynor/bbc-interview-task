@@ -51,7 +51,7 @@ public class ResponseDetailsTest {
                 + "\t\"Url\": \"" + "https://www.bbc.co.uk/" + "\",\n"
                 + "\t\"Status_code\": " + 200 + ",\n"
                 + "\t\"Content_length\": " + 100 + ",\n"
-                + "\t\"Date\": " + "\"" + valid.getDateOfRequestAsString() + "\""
+                + "\t\"Date\": " + "\"" + valid.getDateOfRequestAsString() + "\"\n"
                 + "}", valid.toJsonString());
     }
 
@@ -74,7 +74,7 @@ public class ResponseDetailsTest {
     public void testJsonRepresentationOfInvalidResponse() {
         assertEquals("{\n"
                 + "\t\"Url\": \"" + "invalid://url" + "\",\n"
-                + "\t\"Error\": " + "\"" + "Invalid URL" + "\""
+                + "\t\"Error\": " + "\"" + "Invalid URL" + "\"\n"
                 + "}", invalid.toJsonString());
     }
 }

@@ -78,7 +78,7 @@ public class ValidResponse extends ResponseDetails {
      * @return the date and time in a human-readable format at which the response was sent
      */
     public String getDateOfRequestAsString() {
-        SimpleDateFormat df = new SimpleDateFormat("EEE, DD MMM yyyy HH:mm:ss z");
+        SimpleDateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
 
         return df.format(dateOfRequest);
     }
